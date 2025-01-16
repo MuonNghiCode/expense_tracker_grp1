@@ -6,6 +6,7 @@ import {
   Routes,
 } from "react-router-dom";
 import Layout from "./Layouts/Layout";
+import HomePage from "./Pages/HomePage";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,9 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Layout />}></Route>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />}></Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );
