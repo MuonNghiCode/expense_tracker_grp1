@@ -6,9 +6,10 @@ import Footer from "./Footer/Footer";
 const MainLayout = () => {
   return (
     <div>
-      <Sidebar />
+      <Header />
+
       <div>
-        <Header />
+        <Sidebar />
         <main>
           <Outlet />
         </main>
