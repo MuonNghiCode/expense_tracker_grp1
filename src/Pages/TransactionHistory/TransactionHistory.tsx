@@ -1,9 +1,9 @@
 import { Button } from "antd";
 import React from "react";
-import FormAddTransaction from "../Components/FormAddTransaction/FormAddTransaction";
-import TransactionList from "../Components/TransactionList/TransactionList";
+import FormAddTransaction from "../../Components/FormAddTransaction/FormAddTransaction";
+import TransactionList from "../../Components/TransactionList/TransactionList";
 
-const HomePage = () => {
+const TransactionHistory = () => {
   const [showFormAddTransaction, setShowFormAddTransaction] =
     React.useState(false);
 
@@ -29,4 +29,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default TransactionHistory;

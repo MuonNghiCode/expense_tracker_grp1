@@ -1,0 +1,35 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: auto;
+  padding: 0 30px;
+
+  .navbar-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+  }
+
+  .navbar-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 30px;
+
+    .remainder-box {
+      background: #e7bc56;
+      padding: 5px 15px;
+      border-radius: 25px;
+
+      p {
+        font-size: 20px;
+        color: #222831;
+        font-weight: 600;
+        margin: 0;
+      }
+    }
+  }
+}

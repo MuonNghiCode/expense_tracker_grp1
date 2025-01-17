@@ -1,35 +1,33 @@
 import React from "react";
-import {
-  BrowserRouter,
-  createBrowserRouter,
-  Route,
-  Routes,
-} from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layouts/Layout";
-import HomePage from "./Pages/HomePage";
+import TransactionHistory from "./Pages/TransactionHistory/TransactionHistory";
+import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
-        element: <div>Home</div>,
+        element: <TransactionHistory />,
+      },
+      {
+        path: "/Dashboard",
+        element: <div>Dashboard</div>,
+      },
+      {
+        path: "/Calendar",
+        element: <div>Calendar</div>,
       },
     ],
   },
 ]);
-const App = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<HomePage />}></Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+
+const App: React.FC = () => {
+  return <RouterProvider router={router} />;
 };
 
 export default App;
