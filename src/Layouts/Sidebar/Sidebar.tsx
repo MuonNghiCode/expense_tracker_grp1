@@ -1,6 +1,7 @@
 import React from "react";
 import "./Sidebar.scss";
 import { NavLink } from "react-router-dom";
+import { CalendarOutlined, DashboardOutlined } from "@ant-design/icons";
 
 interface SidebarProps {
   isCollapsed: boolean;
@@ -17,7 +18,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed }) => {
               isActive ? "dashboard active" : "dashboard"
             }
           >
-            Dashboard
+            <DashboardOutlined
+              className="icon"
+              style={{ marginRight: "10px", fontSize: "30px" }}
+            />
+            <span className="link-text">Dashboard</span>
           </NavLink>
           <NavLink
             to="/Calendar"
@@ -25,7 +30,11 @@ const Sidebar: React.FC<SidebarProps> = ({ isCollapsed }) => {
               isActive ? "calender active" : "calender"
             }
           >
-            Calendar
+            <CalendarOutlined
+              className="icon"
+              style={{ marginRight: "10px", fontSize: "30px" }}
+            />
+            <span className="link-text">Calendar</span>
           </NavLink>
         </div>
       </div>
