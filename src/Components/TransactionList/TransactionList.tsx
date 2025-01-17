@@ -1,44 +1,32 @@
-import React, { useEffect } from "react";
-import { TransactionService } from "../../Services/TransactionService";
+import React, { useEffect, useState } from "react";
 import { Transaction } from "../../Models/Transaction";
 import TransactionCard from "../TransactionCard/TransactionCard";
 import FormUpdateTransaction from "../FormUpdateTransaction/FormUpdateTransaction";
+import { useTransactionService } from "../../Services/TransactionService";
 
 const TransactionList: React.FC = () => {
-  const [transactionList, setTransactionList] = React.useState<Transaction[]>(
-    []
-  );
   const [formUpdateTransaction, setFormUpdateTransaction] =
     React.useState(false);
   const [initialTransaction, setInitialTransaction] =
     React.useState<Transaction | null>(null);
+  const [transactionList, setTransactionList] = useState<Transaction[]>([]);
+  const { transactions, updateTransaction, deleteTransaction } =
+    useTransactionService();
 
   useEffect(() => {
     const fetchTransactions = async () => {
-      const transactions = await TransactionService.getTransactions();
       setTransactionList(transactions);
     };
+
     fetchTransactions();
-  }, []);
+  }, [transactions]);
 
   const handleDeleteTransaction = (id: string) => {
-    TransactionService.deleteTransaction(id);
-    const newTransactionList = transactionList?.filter(
-      (transaction) => transaction.id !== id
-    );
-    if (newTransactionList) {
-      setTransactionList(newTransactionList);
-    }
+    deleteTransaction(id);
   };
 
   const handleUpdateTransaction = (transaction: Transaction) => {
-    TransactionService.updateTransaction(transaction.id, transaction);
-    const newTransactionList = transactionList?.map((t) =>
-      t.id === transaction.id ? transaction : t
-    );
-    if (newTransactionList) {
-      setTransactionList(newTransactionList);
-    }
+    updateTransaction(transaction.id, transaction);
   };
 
   const openFormUpdateTransaction = (transaction: Transaction) => {
@@ -56,7 +44,6 @@ const TransactionList: React.FC = () => {
     return dateObj.toISOString().split("T")[0];
   };
 
-  console.log("Transaction list:", transactionList);
   console.log("Form update transaction state:", formUpdateTransaction);
   console.log("Initial transaction:", initialTransaction);
 

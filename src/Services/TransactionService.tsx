@@ -1,3 +1,4 @@
+import { useReducer } from "react";
 import { Transaction } from "../Models/Transaction";
 
 const STORAGE_KEY = "transactions";
@@ -11,48 +12,69 @@ const loadFromLocalStorage = (): Transaction[] => {
   return data ? JSON.parse(data) : [];
 };
 
-let transactions: Transaction[] = loadFromLocalStorage();
+type TransactionAction =
+  | { type: "CREATE"; payload: Omit<Transaction, "id"> }
+  | {
+      type: "UPDATE";
+      payload: { id: string; updatedTransaction: Partial<Transaction> };
+    }
+  | { type: "DELETE"; payload: { id: string } };
 
-export const TransactionService = {
-  createTransaction: (transaction: Omit<Transaction, "id">): Transaction => {
-    const newTransaction = { ...transaction, id: Date.now().toString() };
-    transactions.push(newTransaction);
-    saveToLocalStorage(transactions);
-    return newTransaction;
-  },
+const transactionReducer = (
+  state: Transaction[],
+  action: TransactionAction
+): Transaction[] => {
+  switch (action.type) {
+    case "CREATE":
+      const newTransaction = { ...action.payload, id: Date.now().toString() };
+      const newState = [...state, newTransaction];
+      saveToLocalStorage(newState);
+      return newState;
+    case "UPDATE":
+      const updatedState = state.map((transaction) =>
+        transaction.id === action.payload.id
+          ? { ...transaction, ...action.payload.updatedTransaction }
+          : transaction
+      );
+      saveToLocalStorage(updatedState);
+      return updatedState;
+    case "DELETE":
+      const filteredState = state.filter(
+        (transaction) => transaction.id !== action.payload.id
+      );
+      saveToLocalStorage(filteredState);
+      return filteredState;
+    default:
+      return state;
+  }
+};
 
-  getTransactions: (): Transaction[] => {
-    return transactions;
-  },
+export const useTransactionService = () => {
+  const [transactions, dispatch] = useReducer(
+    transactionReducer,
+    [],
+    loadFromLocalStorage
+  );
 
-  getTransactionById: (id: string): Transaction | undefined => {
-    return transactions.find((transaction) => transaction.id === id);
-  },
+  const createTransaction = (transaction: Omit<Transaction, "id">) => {
+    dispatch({ type: "CREATE", payload: transaction });
+  };
 
-  updateTransaction: (
+  const updateTransaction = (
     id: string,
     updatedTransaction: Partial<Transaction>
-  ): Transaction | undefined => {
-    const index = transactions.findIndex(
-      (transaction) => transaction.id === id
-    );
-    if (index !== -1) {
-      transactions[index] = { ...transactions[index], ...updatedTransaction };
-      saveToLocalStorage(transactions);
-      return transactions[index];
-    }
-    return undefined;
-  },
+  ) => {
+    dispatch({ type: "UPDATE", payload: { id, updatedTransaction } });
+  };
 
-  deleteTransaction: (id: string): boolean => {
-    const index = transactions.findIndex(
-      (transaction) => transaction.id === id
-    );
-    if (index !== -1) {
-      transactions.splice(index, 1);
-      saveToLocalStorage(transactions);
-      return true;
-    }
-    return false;
-  },
+  const deleteTransaction = (id: string) => {
+    dispatch({ type: "DELETE", payload: { id } });
+  };
+
+  return {
+    transactions,
+    createTransaction,
+    updateTransaction,
+    deleteTransaction,
+  };
 };
