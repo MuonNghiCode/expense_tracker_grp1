@@ -1,18 +1,19 @@
 import React from "react";
 import { Modal, Button, Form, Input, Select } from "antd";
-import { useTransactionService } from "../../Services/TransactionService";
 import { Transaction } from "../../Models/Transaction";
+
 interface FormAddTransactionProps {
   showFormAddTransaction: boolean;
   handleCloseFormAddTransaction: () => void;
+  createTransaction: (transaction: Omit<Transaction, "id">) => void;
 }
 
 const FormAddTransaction: React.FC<FormAddTransactionProps> = ({
   showFormAddTransaction,
   handleCloseFormAddTransaction,
+  createTransaction,
 }) => {
   const [form] = Form.useForm();
-  const { createTransaction } = useTransactionService();
 
   const onCreate = (values: Transaction) => {
     createTransaction(values);

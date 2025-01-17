@@ -2,23 +2,29 @@ import React, { useEffect, useState } from "react";
 import { Transaction } from "../../Models/Transaction";
 import TransactionCard from "../TransactionCard/TransactionCard";
 import FormUpdateTransaction from "../FormUpdateTransaction/FormUpdateTransaction";
-import { useTransactionService } from "../../Services/TransactionService";
 
-const TransactionList: React.FC = () => {
+interface TransactionListProps {
+  transactions: Transaction[];
+  updateTransaction: (
+    id: string,
+    updatedTransaction: Partial<Transaction>
+  ) => void;
+  deleteTransaction: (id: string) => void;
+}
+
+const TransactionList: React.FC<TransactionListProps> = ({
+  transactions,
+  updateTransaction,
+  deleteTransaction,
+}) => {
   const [formUpdateTransaction, setFormUpdateTransaction] =
     React.useState(false);
   const [initialTransaction, setInitialTransaction] =
     React.useState<Transaction | null>(null);
   const [transactionList, setTransactionList] = useState<Transaction[]>([]);
-  const { transactions, updateTransaction, deleteTransaction } =
-    useTransactionService();
 
   useEffect(() => {
-    const fetchTransactions = async () => {
-      setTransactionList(transactions);
-    };
-
-    fetchTransactions();
+    setTransactionList(transactions);
   }, [transactions]);
 
   const handleDeleteTransaction = (id: string) => {
