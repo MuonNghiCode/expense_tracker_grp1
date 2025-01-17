@@ -1,6 +1,6 @@
 import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Layout from "./Layouts/Layout";
+import Layout from "./Layouts/MainLayout/MainLayout";
 import TransactionHistory from "./Pages/TransactionHistory/TransactionHistory";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
 

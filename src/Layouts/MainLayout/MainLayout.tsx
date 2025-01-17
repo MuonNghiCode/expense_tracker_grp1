@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
-import "./Layout.scss";
-import Sidebar from "./Sidebar/Sidebar";
-import Header from "./Header/Header";
+import "./MainLayout.scss";
+import Sidebar from "../Sidebar/Sidebar";
+import Header from "../Header/Header";
 import { useState } from "react";
 
-const Layout: React.FC = () => {
+const MainLayout: React.FC = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState<boolean>(false);
 
   const toggleSidebar = () => {
@@ -24,4 +24,4 @@ const Layout: React.FC = () => {
   );
 };
 
-export default Layout;
+export default MainLayout;
