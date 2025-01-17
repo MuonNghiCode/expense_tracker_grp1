@@ -1,28 +1,21 @@
 import React from "react";
+import { Modal, Button, Form, Input, Select } from "antd";
+import { useTransactionService } from "../../Services/TransactionService";
 import { Transaction } from "../../Models/Transaction";
-import { Form, Input, Modal, Button, Select } from "antd";
-import { TransactionService } from "../../Services/TransactionService";
-
-interface formAddTransactionProps {
+interface FormAddTransactionProps {
   showFormAddTransaction: boolean;
   handleCloseFormAddTransaction: () => void;
 }
 
-const FormAddTransaction: React.FC<formAddTransactionProps> = ({
+const FormAddTransaction: React.FC<FormAddTransactionProps> = ({
   showFormAddTransaction,
   handleCloseFormAddTransaction,
 }) => {
   const [form] = Form.useForm();
+  const { createTransaction } = useTransactionService();
 
   const onCreate = (values: Transaction) => {
-    const newTransaction = {
-      name: values.name,
-      amount: values.amount,
-      category: values.category,
-      date: values.date,
-      type: values.type,
-    };
-    TransactionService.createTransaction(newTransaction);
+    createTransaction(values);
     form.resetFields();
     handleCloseFormAddTransaction();
   };
@@ -53,7 +46,7 @@ const FormAddTransaction: React.FC<formAddTransactionProps> = ({
           rules={[
             {
               required: true,
-              message: "Please input the title of the transaction!",
+              message: "Please input the name of the transaction!",
             },
           ]}
         >
@@ -72,8 +65,8 @@ const FormAddTransaction: React.FC<formAddTransactionProps> = ({
           <Input type="number" />
         </Form.Item>
         <Form.Item
-          name={"date"}
-          label={"Date"}
+          name="date"
+          label="Date"
           rules={[
             {
               required: true,
@@ -104,7 +97,7 @@ const FormAddTransaction: React.FC<formAddTransactionProps> = ({
           rules={[
             {
               required: true,
-              message: "Please select the type of the transaction!",
+              message: "Please select the category of the transaction!",
             },
           ]}
         >
