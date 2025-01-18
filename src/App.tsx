@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./Layouts/MainLayout/MainLayout";
 import TransactionHistory from "./Pages/TransactionHistory/TransactionHistory";
 import ErrorPage from "./Pages/ErrorPage/ErrorPage";
+import TransactionDetail from "./Pages/TransactionDetail/TransactionDetail";
 
 const router = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <TransactionHistory />,
+      },
+      {
+        path: "/transaction/:id",
+        element: <TransactionDetail />,
       },
       {
         path: "/Dashboard",
