@@ -26,7 +26,7 @@ const TransactionCard: React.FC<TransactionCardProps> = ({
       <div className="transaction-card-header">
         <div className="transaction-card-header-left">
           <p>{formatDate(transaction.date)}</p>
-          <h1>{transaction.name}</h1>
+          <h1>{transaction.description}</h1>
         </div>
         <div className="transaction-card-header-right">
           <p>{transaction.amount}đ</p>

@@ -42,8 +42,8 @@ const FormAddTransaction: React.FC<FormAddTransactionProps> = ({
         onFinish={onCreate}
       >
         <Form.Item
-          name="name"
-          label="Name"
+          name="description"
+          label="Description"
           rules={[
             {
               required: true,

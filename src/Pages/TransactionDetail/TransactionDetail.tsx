@@ -34,7 +34,7 @@ const TransactionDetail = () => {
         <strong>ID:</strong> {transaction.id}
       </p>
       <p>
-        <strong>Name:</strong> {transaction.name}
+        <strong>Description:</strong> {transaction.description}
       </p>
       <p>
         <strong>Amount:</strong> {transaction.amount}đ
@@ -47,9 +47,6 @@ const TransactionDetail = () => {
       </p>
       <p>
         <strong>Type:</strong> {transaction.type}
-      </p>
-      <p>
-        <strong>Description:</strong> {transaction.description}
       </p>
       <button className="back-button" onClick={() => navigate(-1)}>
         Back

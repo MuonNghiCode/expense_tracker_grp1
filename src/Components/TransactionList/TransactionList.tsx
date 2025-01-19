@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Transaction } from "../../Models/Transaction";
 import TransactionCard from "../TransactionCard/TransactionCard";
 import FormUpdateTransaction from "../FormUpdateTransaction/FormUpdateTransaction";
-import { Button } from "antd";
 
 interface TransactionListProps {
   transactions: Transaction[];

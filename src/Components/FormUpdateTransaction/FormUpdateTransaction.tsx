@@ -7,7 +7,7 @@ interface FormUpdateTransactionProps {
   updateTransaction: (transaction: any) => void;
   initialTransaction: {
     id: string;
-    name: string;
+    description: string;
     amount: number;
     date: string;
     type: string;
