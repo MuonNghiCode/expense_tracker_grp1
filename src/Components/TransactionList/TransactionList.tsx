@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Transaction } from "../../Models/Transaction";
 import TransactionCard from "../TransactionCard/TransactionCard";
 import FormUpdateTransaction from "../FormUpdateTransaction/FormUpdateTransaction";
+import { Button } from "antd";
 
 interface TransactionListProps {
   transactions: Transaction[];
@@ -10,12 +11,14 @@ interface TransactionListProps {
     updatedTransaction: Partial<Transaction>
   ) => void;
   deleteTransaction: (id: string) => void;
+  handleViewTransactionDetail: (transactionId: string) => void;
 }
 
 const TransactionList: React.FC<TransactionListProps> = ({
   transactions,
   updateTransaction,
   deleteTransaction,
+  handleViewTransactionDetail,
 }) => {
   const [formUpdateTransaction, setFormUpdateTransaction] =
     React.useState(false);
@@ -58,13 +61,14 @@ const TransactionList: React.FC<TransactionListProps> = ({
       <ul>
         {transactionList ? (
           transactionList.map((transaction) => (
-            <div key={transaction.id}>
+            <li key={transaction.id}>
               <TransactionCard
                 transaction={transaction}
                 deleteTransaction={handleDeleteTransaction}
                 openFormUpdateTransaction={openFormUpdateTransaction}
+                onClick={() => handleViewTransactionDetail(transaction.id)}
               />
-            </div>
+            </li>
           ))
         ) : (
           <p>No transactions</p>

@@ -1,0 +1,68 @@
+.transaction-card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px; /* Tăng khoảng cách */
+  margin-top: 15px; /* Tăng khoảng cách */
+  margin-bottom: 15px; /* Tăng khoảng cách */
+  border-bottom: 2px solid #e0e0e0; /* Đường viền dày hơn */
+
+  .transaction-card-header {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1em; /* Tăng kích thước chữ */
+  }
+
+  .transaction-card-divider {
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 15px; /* Tăng khoảng cách */
+    margin-bottom: 15px; /* Tăng khoảng cách */
+    font-size: 1.1em; /* Tăng kích thước chữ */
+  }
+}
+
+.transaction-action {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px; /* Thêm khoảng cách trên nút hành động */
+}
+
+.edit-button {
+  background-color: #007bff; /* Màu chính cho nút chỉnh sửa */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #0056b3; /* Màu đậm hơn khi di chuột */
+  }
+}
+
+.delete-button {
+  background-color: #dc3545; /* Màu nguy hiểm cho nút xóa */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 12px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #c82333; /* Màu đậm hơn khi di chuột */
+  }
+}
+
+.action-divider {
+  width: 1px;
+  background-color: #ddd; /* Màu xám nhẹ cho đường chia */
+  height: 30px; /* Chiều cao của đường chia */
+  margin: 0 10px; /* Khoảng cách trái và phải */
+}

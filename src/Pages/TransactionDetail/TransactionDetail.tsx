@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { mockTransactions } from "./Mockdata";
-import "./TransactionDetail.scss";
+import "./TransactionDetail.css";
 import { Transaction } from "../../Models/Transaction";
+import { useTransactionService } from "../../Services/TransactionService";
 
 const TransactionDetail = () => {
   const { id } = useParams<{ id: string }>();
@@ -10,15 +10,22 @@ const TransactionDetail = () => {
     undefined
   );
   const navigate = useNavigate();
+  const { transactions } = useTransactionService();
 
   useEffect(() => {
-    const foundTransaction = mockTransactions.find((t) => t.id === id);
+    const foundTransaction = transactions.find((t) => t.id === id);
     setTransaction(foundTransaction);
-  }, [id]);
+  }, [id, transactions]);
 
   if (!transaction) {
     return <div>Transaction not found</div>;
   }
+
+  // Convert date to Date object if it's a string
+  const transactionDate =
+    typeof transaction.date === "string"
+      ? new Date(transaction.date)
+      : transaction.date;
 
   return (
     <div className="transaction-detail">
@@ -30,10 +37,10 @@ const TransactionDetail = () => {
         <strong>Name:</strong> {transaction.name}
       </p>
       <p>
-        <strong>Amount:</strong> {transaction.amount}
+        <strong>Amount:</strong> {transaction.amount}đ
       </p>
       <p>
-        <strong>Date:</strong> {transaction.date.toDateString()}
+        <strong>Date:</strong> {transactionDate.toDateString()}
       </p>
       <p>
         <strong>Category:</strong> {transaction.category}

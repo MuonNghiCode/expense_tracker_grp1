@@ -1,20 +1,13 @@
-$primary-color: #ffd369;
-$secondary-color: #393e46;
-$text-color: #f2f2f2;
-$border-radius: 10px;
-$box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-$transition-speed: 0.3s;
-
 .transaction-detail {
-  background-color: $secondary-color;
+  background-color: #393e46;
   padding: 30px;
-  border-radius: $border-radius;
-  box-shadow: $box-shadow;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   max-width: 600px;
   margin: 20px auto;
   font-family: Arial, sans-serif;
-  transition: transform $transition-speed ease,
-    box-shadow $transition-speed ease;
+  transition: transform 0.3s ease,
+    box-shadow 0.3s ease;
 
   &:hover {
     transform: translateY(-5px);
@@ -22,7 +15,7 @@ $transition-speed: 0.3s;
   }
 
   h1 {
-    color: $primary-color;
+    color: #ffd369;
     text-align: center;
     margin-bottom: 20px;
     font-size: 28px;
@@ -33,12 +26,12 @@ $transition-speed: 0.3s;
 
   p {
     font-size: 18px;
-    color: $text-color;
+    color: #f2f2f2;
     margin: 15px 0;
     line-height: 1.6;
 
     strong {
-      color: $primary-color;
+      color: #ffd369;
       font-weight: bold;
     }
   }
@@ -47,19 +40,19 @@ $transition-speed: 0.3s;
     display: inline-block;
     margin-top: 20px;
     padding: 12px 24px;
-    background-color: $primary-color;
+    background-color: #ffd369;
     color: #fff;
     border: none;
-    border-radius: $border-radius;
+    border-radius: 10px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
-    transition: background-color $transition-speed ease,
-      transform $transition-speed ease;
+    transition: background-color 0.3s ease,
+    transform 0.3s ease;
 
     &:hover {
-      background-color: darken($primary-color, 10%);
+      background-color: #e6c300;
       transform: scale(1.05);
     }
   }

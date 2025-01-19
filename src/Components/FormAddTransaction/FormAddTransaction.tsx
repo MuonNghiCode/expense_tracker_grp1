@@ -88,8 +88,9 @@ const FormAddTransaction: React.FC<FormAddTransactionProps> = ({
           ]}
         >
           <Select>
-            <Select.Option value="Income">Income</Select.Option>
-            <Select.Option value="Expense">Expense</Select.Option>
+            <Select.Option value="Cash">Cash</Select.Option>
+            <Select.Option value="Card">Card</Select.Option>
+            <Select.Option value="Bank">Bank</Select.Option>
           </Select>
         </Form.Item>
         <Form.Item
@@ -103,9 +104,8 @@ const FormAddTransaction: React.FC<FormAddTransactionProps> = ({
           ]}
         >
           <Select>
-            <Select.Option value="Cash">Cash</Select.Option>
-            <Select.Option value="Card">Card</Select.Option>
-            <Select.Option value="Bank">Bank</Select.Option>
+            <Select.Option value="Income">Income</Select.Option>
+            <Select.Option value="Expense">Expense</Select.Option>
           </Select>
         </Form.Item>
       </Form>
