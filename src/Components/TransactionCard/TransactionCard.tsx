@@ -1,6 +1,6 @@
 import React from "react";
 import { Transaction } from "../../Models/Transaction";
-import "./TransactionCard.css";
+import "./TransactionCard.scss";
 import { Button } from "antd";
 
 interface TransactionCardProps {
